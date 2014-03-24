@@ -68,8 +68,13 @@ class System {
         }
     }
 
-    public function getParam($name) {
-        return $this->_params[$name];
+    public function getParam($name = null) {
+        if ($name != null) {
+
+            return $this->_params[$name];
+        } else {
+            return $this->_params;
+        }
     }
 
     public function run() {

@@ -17,6 +17,7 @@
             $fields = implode(", ", array_keys($data));
             $values = "'".implode("',' ", array_values($data))."'";
             $this->db->query("INSERT INTO `{$this->_table}` ({$fields}) VALUES({$values})");
+            return  $this->db->lastInsertId();
         }
         
         public function read(){

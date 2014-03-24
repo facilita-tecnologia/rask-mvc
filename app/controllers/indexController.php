@@ -4,9 +4,13 @@ class Index extends Controller {
 
     public function index_action() {
 
-        $dados ['nome'] = $this->getParam('nome');
-        $dados['sobrenome'] = $this->getParam('sobrenome');
-        $this->view('Index',$dados);
+        $params = array("one" => "red", "two" => "blue", "three" => "green");
+
+        $response = xmlrpc_encode($params);
+
+        echo ( $response );
+        // $dados = $this->getParam();
+        // $this->view('Index', 'index', $dados);
     }
 
 }
