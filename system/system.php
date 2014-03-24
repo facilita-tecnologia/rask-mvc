@@ -30,16 +30,16 @@ class System {
     }
 
     private function setAction() {
-        $ac = (!isset($this->_explode[1]) || $this->_explode[1] == null || $this->_explode[1] == 'index' ? 'index_action' : $this->_explode[1]);
+        $ac = (!isset($this->_explode[1]) || $this->_explode[1] == null || $this->_explode[1] == "index" ? "index_action" : $this->_explode[1]);
         $this->_action = $ac;
     }
 
     private function setParams() {
-        unset($this->_explode[0], $this->_explode[0]);
 
-        if (end($this->_explode) == null) {
+        unset($this->_explode[0], $this->_explode[1]);
+
+        if (end($this->_explode) == null)
             array_pop($this->_explode);
-        }
 
         $i = 0;
 
@@ -49,7 +49,6 @@ class System {
 
             foreach ($this->_explode as $val) {
                 if ($i % 2 == 0) {
-
                     $ind[] = $val;
                 } else {
                     $value[] = $val;
@@ -57,81 +56,36 @@ class System {
                 $i++;
             }
         } else {
+
             $ind = array();
             $value = array();
         }
 
-        $value = null;
-        
         if (count($ind) == count($value) && !empty($ind) && !empty($value)) {
             $this->_params = array_combine($ind, $value);
-            
         } else {
             $this->_params = array();
         }
-        
-        print_r($value);
     }
 
-    public function getParam( $name ){
+    public function getParam($name) {
         return $this->_params[$name];
     }
-    
-    public function run(){
-        $controller_path = CONTROLLERS.$this->_controller.'Controller.php';
-                
-        if(!file_exists($controller_path))
+
+    public function run() {
+        $controller_path = CONTROLLERS . $this->_controller . 'Controller.php';
+
+        if (!file_exists($controller_path))
             die('Houve um erro. O Controller não existe.');
-        
+
         require_once ($controller_path);
         $app = new $this->_controller();
-       
-        if (!method_exists($app, $this->_action)) 
+
+        if (!method_exists($app, $this->_action))
             die('Houve um erro. Esta action não existe.');
-        
+
         $action = $this->_action;
         $app->$action();
-       
     }
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
