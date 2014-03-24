@@ -1,10 +1,5 @@
 <?php
 
-/*
- * Create web applications simpler, faster and with less code. with the MVC Framework Rask
- * @author Jocinardo Rodrigues <jocinardo.rodrigues@gmail.com>
- */
-
 class System {
 
     private $_url;
@@ -35,7 +30,7 @@ class System {
     }
 
     private function setAction() {
-        $ac = (!isset($this->_explode[1]) || $this->_explode[1] == null || $this->_explode == "index" ? "index_action" : $this->_explode[1]);
+        $ac = (!isset($this->_explode[1]) || $this->_explode[1] == null || $this->_explode[1] == 'index' ? 'index_action' : $this->_explode[1]);
         $this->_action = $ac;
     }
 
@@ -57,7 +52,7 @@ class System {
 
                     $ind[] = $val;
                 } else {
-                    $value = $val;
+                    $value[] = $val;
                 }
                 $i++;
             }
@@ -66,13 +61,77 @@ class System {
             $value = array();
         }
 
-        if (count($ind) == count($vlaue) && !empty($ind) && !empty($value)) {
+        $value = null;
+        
+        if (count($ind) == count($value) && !empty($ind) && !empty($value)) {
             $this->_params = array_combine($ind, $value);
+            
         } else {
             $this->_params = array();
         }
-
-        print_r($ind);
+        
+        print_r($value);
     }
 
+    public function getParam( $name ){
+        return $this->_params[$name];
+    }
+    
+    public function run(){
+        $controller_path = CONTROLLERS.$this->_controller.'Controller.php';
+                
+        if(!file_exists($controller_path))
+            die('Houve um erro. O Controller não existe.');
+        
+        require_once ($controller_path);
+        $app = new $this->_controller();
+       
+        if (!method_exists($app, $this->_action)) 
+            die('Houve um erro. Esta action não existe.');
+        
+        $action = $this->_action;
+        $app->$action();
+       
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

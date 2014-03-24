@@ -1,7 +1,7 @@
 <?php
-    define('CONTROLLERS', '/app/controllrs');
-    define('VIEWS', '/app/views');
-    define('MODELS', '/app/models');
+    define('CONTROLLERS', 'app/controllers/');
+    define('VIEWS', 'app/views/');
+    define('MODELS', 'app/models/');
 
     require_once ('system/system.php');
     require_once ('system/controller.php');
@@ -12,3 +12,4 @@
      }
    
      $start = new System;
+     $start->run();

@@ -1,7 +1,7 @@
 <?php
      class Produtos extends Controller{
          
-         public function  index(){
+         public function  index_action(){
              $db = new Produtos_Model();
              $db->insert( 
                      array(
