@@ -1,13 +1,22 @@
 <html>
     <head>
         <title>Cadastro de Produtos</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.css" rel="stylesheet">
     </head>
-    
+
     <body>
-        <form method="POST" action="salvar">
-            <input type="text" name="nome" placeholder="Nome">
-            <input type="text" name="valor" placeholder="Valor">
-            <button type="submit">Salvar</button>
-        </form>
+        <div class="container">
+            
+            <div class="jumbotron">
+                <h1>Cadastro de Produtos</h1>
+            </div>
+            
+            <form method="POST" action="salvar">
+                <input type="text" name="nome" placeholder="Nome">
+                <input type="text" name="valor" placeholder="Valor">
+                <button type="submit">Salvar</button>
+            </form>    
+        </div>
     </body>
 </html>

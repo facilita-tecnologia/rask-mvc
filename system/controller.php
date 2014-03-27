@@ -36,7 +36,8 @@ class Controller extends System {
         return json_encode($data);
     }
 
-    protected function toXml(Array $data){
+    protected function toXml(Array $data) {
         //
     }
+
 }
